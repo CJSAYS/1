@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Mountains+of+Christmas:wght@700&display=swap');
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: linear-gradient(135deg, #0b1f3d 0%, #1a3a6d 100%);
+      color: white;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      overflow-x: hidden;
+      font-family: 'Mountains of Christmas', cursive;
+    }
+
+    .snowflake {
+      position: fixed;
+      color: white;
+      font-size: 1.5em;
+      animation: fall linear infinite;
+      z-index: 1;
+    }
+
+    @keyframes fall {
+      to {
+        transform: translateY(100vh);
+      }
+    }
+
+    .container {
+      max-width: 1200px;
+      padding: 2rem;
+      text-align: center;
+      position: relative;
+      z-index: 2;
+    }
+
+    .logo {
+      font-size: 5rem;
+      margin: 2rem 0;
+      text-shadow: 0 0 20px #4a9eff;
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+      100% { transform: scale(1); }
+    }
+
+    .title {
+      font-size: 4.5rem;
+      margin: 1rem 0;
+      background: linear-gradient(45deg, #ff0000, #ffffff);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      text-shadow: 0 0 30px rgba(255, 0, 0, 0.3);
+      animation: glow 2s infinite;
+    }
+
+    @keyframes glow {
+      0% { text-shadow: 0 0 30px rgba(255, 0, 0, 0.3); }
+      50% { text-shadow: 0 0 50px rgba(255, 0, 0, 0.5); }
+      100% { text-shadow: 0 0 30px rgba(255, 0, 0, 0.3); }
+    }
+
+    .telegram-btn {
+      background: linear-gradient(45deg, #ff0000, #ff4545);
+      color: white;
+      padding: 1.2rem 2.5rem;
+      border: none;
+      border-radius: 50px;
+      font-size: 1.5rem;
+      cursor: pointer;
+      transition: transform 0.3s, box-shadow 0.3s;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+      margin: 2rem 0;
+      font-family: 'Mountains of Christmas', cursive;
+    }
+
+    .telegram-btn:hover {
+      transform: translateY(-5px) scale(1.05);
+      box-shadow: 0 10px 30px rgba(255, 0, 0, 0.4);
+    }
+
+    .snowman-container {
+      position: relative;
+      margin: 3rem 0;
+      animation: float 3s ease-in-out infinite;
+    }
+
+    @keyframes float {
+      0% { transform: translateY(0px); }
+      50% { transform: translateY(-20px); }
+      100% { transform: translateY(0px); }
+    }
+
+    .snowman {
+      width: 200px;
+      height: 300px;
+      position: relative;
+    }
+
+    .body-bottom {
+      width: 150px;
+      height: 150px;
+      background: white;
+      border-radius: 50%;
+      position: absolute;
+      bottom: 0;
+      left: 25px;
+    }
+
+    .body-middle {
+      width: 120px;
+      height: 120px;
+      background: white;
+      border-radius: 50%;
+      position: absolute;
+      bottom: 120px;
+      left: 40px;
+    }
+
+    .head {
+      width: 90px;
+      height: 90px;
+      background: white;
+      border-radius: 50%;
+      position: absolute;
+      bottom: 220px;
+      left: 55px;
+    }
+
+    .eye {
+      width: 10px;
+      height: 10px;
+      background: black;
+      border-radius: 50%;
+      position: absolute;
+    }
+
+    .eye-left {
+      top: 30px;
+      left: 25px;
+    }
+
+    .eye-right {
+      top: 30px;
+      right: 25px;
+    }
+
+    .carrot {
+      width: 0;
+      height: 0;
+      border-left: 20px solid orange;
+      border-top: 8px solid transparent;
+      border-bottom: 8px solid transparent;
+      position: absolute;
+      top: 40px;
+      left: 35px;
+    }
+
+    .scarf {
+      width: 120px;
+      height: 20px;
+      background: #ff0000;
+      position: absolute;
+      bottom: 200px;
+      left: 40px;
+      border-radius: 10px;
+      transform: rotate(-10deg);
+    }
+
+    .tokenomics {
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
+      padding: 2rem;
+      border-radius: 20px;
+      margin: 2rem 0;
+      animation: slideIn 1s ease-out;
+    }
+
+    @keyframes slideIn {
+      from { transform: translateX(-100%); opacity: 0; }
+      to { transform: translateX(0); opacity: 1; }
+    }
+
+    .sparkle {
+      position: absolute;
+      width: 4px;
+      height: 4px;
+      background: white;
+      border-radius: 50%;
+      animation: twinkle 1s infinite;
+    }
+
+    @keyframes twinkle {
+      0% { opacity: 0; }
+      50% { opacity: 1; }
+      100% { opacity: 0; }
+    }
+
+    .telegram-icon {
+      font-size: 2rem;
+      margin-right: 8px;
+    }
+  </style>
+</head>
+<body>
+  <script>
+    function createSnowflakes() {
+      const snowflake = document.createElement('div');
+      snowflake.classList.add('snowflake');
+      snowflake.innerHTML = '❄️';
+      snowflake.style.left = Math.random() * 100 + 'vw';
+      snowflake.style.animationDuration = Math.random() * 3 + 2 + 's';
+      snowflake.style.opacity = Math.random();
+      document.body.appendChild(snowflake);
+      
+      setTimeout(() => {
+        snowflake.remove();
+      }, 5000);
+    }
+    
+    setInterval(createSnowflakes, 100);
+
+    function createSparkles() {
+      const container = document.querySelector('.container');
+      for(let i = 0; i < 20; i++) {
+        const sparkle = document.createElement('div');
+        sparkle.classList.add('sparkle');
+        sparkle.style.left = Math.random() * 100 + '%';
+        sparkle.style.top = Math.random() * 100 + '%';
+        sparkle.style.animationDelay = Math.random() * 2 + 's';
+        container.appendChild(sparkle);
+      }
+    }
+
+    window.onload = createSparkles;
+  </script>
+
+  <div class="container">
+    <div class="logo">❄️</div>
+    <h1 class="title">MERRY CHRISTMAS</h1>
+    
+    <div class="snowman-container">
+      <div class="snowman">
+        <div class="body-bottom"></div>
+        <div class="body-middle"></div>
+        <div class="head">
+          <div class="eye eye-left"></div>
+          <div class="eye eye-right"></div>
+          <div class="carrot"></div>
+        </div>
+        <div class="scarf"></div>
+      </div>
+    </div>
+
+    <div class="tokenomics">
+      <h2 style="font-size: 2.5rem; color: #ff0000; margin-bottom: 1rem;">🎅 Christmas Tokenomics 🎅</h2>
+      <p style="font-size: 1.8rem;">0% Tax</p>
+      <p style="font-size: 1.8rem;">1,000,000,000 Supply</p>
+    </div>
+
+    <a href="#" class="telegram-btn">
+      <i class="fab fa-telegram telegram-icon"></i>
+      Telegram
+    </a>
+  </div>
+</body>
+</html>
